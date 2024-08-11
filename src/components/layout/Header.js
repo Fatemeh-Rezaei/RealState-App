@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FiLogin } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import styles from "@/layout/Header.module.css";
 
 function Header() {
@@ -17,7 +17,7 @@ function Header() {
       </div>
       <div className={styles.login}>
         <Link href="/signin">
-          <FiLogin />
+          <FiLogIn />
           <span>ورود</span>
         </Link>
       </div>
