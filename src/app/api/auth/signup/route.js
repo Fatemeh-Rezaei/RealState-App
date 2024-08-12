@@ -35,7 +35,12 @@ export async function POST(req) {
     });
     console.log("newUser", newUser);
 
-    return NextResponse.json({ message: "حساب کاربری ایجاد شد" });
+    return NextResponse.json(
+      { message: "حساب کاربری ایجاد شد" },
+      {
+        status: 201,
+      }
+    );
   } catch (error) {
     console.log(error);
     return NextResponse.json(
