@@ -5,6 +5,7 @@ import TextInput from "@/module/TextInput";
 import styles from "@/template/AddProfilePage.module.css";
 import RadioList from "@/module/RadioList";
 import TextList from "@/module/TextList";
+import CustomDatePicker from "@/module/CustomDatePicker";
 
 function AddProfilePage() {
   const [profileData, setProfileData] = useState({
@@ -76,6 +77,10 @@ function AddProfilePage() {
         profileData={profileData}
         setProfileData={setProfileData}
         type="rules"
+      />
+      <CustomDatePicker
+        profileData={profileData}
+        setProfileData={setProfileData}
       />
       <button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
