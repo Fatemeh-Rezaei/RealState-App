@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
-import { ThreeDots } from "react-loader-spinner";
 import styles from "@/template/SignupPage.module.css";
+import Loader from "@/module/Loader";
 
 function SigninPage() {
   const [email, setEmail] = useState("");
@@ -54,13 +54,7 @@ function SigninPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
         {loading ? (
-          <ThreeDots
-            color="#304ffe"
-            height={45}
-            ariaLabel="three-dots-loading"
-            visible={true}
-            wrapperStyle={{ margin: "auto" }}
-          />
+          <Loader />
         ) : (
           <button type="submit" onClick={signinHandler}>
             ثبت نام

@@ -10,7 +10,6 @@ export async function POST(req) {
     await connectDB();
 
     const body = await req.json();
-    console.log("body", body);
     const {
       title,
       description,
@@ -25,7 +24,6 @@ export async function POST(req) {
     } = body;
 
     const session = await getServerSession(req);
-    console.log("session", session);
     if (!session) {
       return NextResponse.json(
         { error: "لطفا وارد حساب کاربری خود بشید" },
@@ -34,7 +32,6 @@ export async function POST(req) {
     }
 
     const user = await User.findOne({ email: session.user.email });
-    console.log("user", user);
 
     if (!user) {
       return NextResponse.json(
