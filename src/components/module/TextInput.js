@@ -10,7 +10,7 @@ function TextInput({
 }) {
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    setProfileData({ ...profileData, [name]: p2e(value) });
+    setProfileData({ ...profileData, [name]: p2e(value ) });
   };
 
   return (
