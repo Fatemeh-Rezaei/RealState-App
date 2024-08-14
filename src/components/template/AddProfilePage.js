@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import TextInput from "@/module/TextInput";
 import RadioList from "@/module/RadioList";
@@ -9,7 +10,7 @@ import CustomDatePicker from "@/module/CustomDatePicker";
 import Loader from "@/module/Loader";
 import styles from "@/template/AddProfilePage.module.css";
 
-function AddProfilePage() {
+function AddProfilePage({ data }) {
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
@@ -24,6 +25,12 @@ function AddProfilePage() {
   });
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (data) setProfileData(data);
+  }, []);
+
+  const router = useRouter();
+
   const submitHandler = async () => {
     setLoading(true);
     const res = await fetch("/api/profile", {
@@ -37,12 +44,30 @@ function AddProfilePage() {
       toast.error(data.error);
     } else {
       toast.success(data.message);
+      router.refresh();
+    }
+  };
+
+  const editHandler = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "PATCH",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+    data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
+    } else {
+      toast.success(data.message);
+      router.refresh();
     }
   };
 
   return (
     <div className={styles.container}>
-      <h3>ثبت آگهی</h3>
+      <h3>{data ? "ویرایش آگهی" : "ثبت آگهی"}</h3>
       <TextInput
         title="عنوان آگهی"
         name="title"
@@ -100,6 +125,10 @@ function AddProfilePage() {
       <Toaster />
       {loading ? (
         <Loader />
+      ) : data ? (
+        <button className={styles.submit} onClick={editHandler}>
+          ویرایش آگهی
+        </button>
       ) : (
         <button className={styles.submit} onClick={submitHandler}>
           ثبت آگهی
