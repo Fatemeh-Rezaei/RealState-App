@@ -1,20 +1,10 @@
 import { FiCircle } from "react-icons/fi";
-import styles from "@/template/HomePage.module.css";
-import CategoryCard from "@/module/CategoryCard";
 import { FaCity } from "react-icons/fa";
+import CategoryCard from "@/module/CategoryCard";
+import { categories, cities, services } from "@/constants/strings";
+import styles from "@/template/HomePage.module.css";
 
 function HomePage() {
-  const services = ["خرید", "فروش", "رهن", "اجاره"];
-  const cities = [
-    "تهران",
-    "سنندج",
-    "کرمانشاه",
-    "اهواز",
-    "مشهد",
-    "اصفهان",
-    "شیراز",
-    "خرم آباد",
-  ];
   return (
     <div>
       <div className={styles.banner}>
@@ -31,18 +21,19 @@ function HomePage() {
         </div>
       </div>
       <div className={styles.categories}>
-        <CategoryCard title="خانه ویلایی" name="villa" />
-        <CategoryCard title="آپارتمان" name="apartment" />
-        <CategoryCard title="مغازه" name="store" />
-        <CategoryCard title="دفتر" name="office" />
+        {Object.keys(categories).map((i) => (
+          <CategoryCard title={categories[i]} name={i} />
+        ))}
       </div>
       <div className={styles.city}>
         <h3>شهرهای پر بازدید</h3>
         <ul>
-            {cities.map(i => <li key={i}>
-                <FaCity />
-                <span>{i}</span>
-            </li>)}
+          {cities.map((i) => (
+            <li key={i}>
+              <FaCity />
+              <span>{i}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
