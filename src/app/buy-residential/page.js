@@ -1,14 +1,19 @@
 import BuyResidentialsPage from "@/template/BuyResidentialsPage";
 
-async function BuyResidentials() {
+async function BuyResidentials({ searchParams }) {
   const res = await fetch("http://localhost:3000/api/profile", {
     cache: "no-store",
   });
   const data = await res.json();
 
-  if(data.error) return <h3>مشکلی پیش آمده است</h3>
+  if (data.error) return <h3>مشکلی پیش آمده است</h3>;
 
-  return <BuyResidentialsPage data={data.data} />;
+  let finalData = data.data;
+  if (searchParams.category) {
+    finalData = finalData.filter((i) => i.category === searchParams.category);
+  }
+
+  return <BuyResidentialsPage data={finalData} />;
 }
 
 export default BuyResidentials;
