@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import styles from "@/template/SignupPage.module.css";
 import Loader from "@/module/Loader";
+import styles from "@/template/SignupPage.module.css";
 
 function SignupPage() {
   const [email, setEmail] = useState("");

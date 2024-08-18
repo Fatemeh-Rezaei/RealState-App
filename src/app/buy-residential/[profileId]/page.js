@@ -1,6 +1,6 @@
 import Profile from "@/models/Profile";
-import DetailsPage from "@/template/DetailsPage";
 import connectDB from "@/utils/connectDB";
+import DetailsPage from "@/template/DetailsPage";
 
 async function ProfileDetails({ params: { profileId } }) {
   await connectDB();
@@ -12,3 +12,13 @@ async function ProfileDetails({ params: { profileId } }) {
 }
 
 export default ProfileDetails;
+
+export const generateMetadata = async ({ params: { profileId } }) => {
+  await connectDB();
+  const profile = await Profile.findOne({ _id: profileId });
+  return {
+    title: profile.title,
+    description: profile.description,
+    authors: { name: profile.realState },
+  };
+};

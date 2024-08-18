@@ -143,15 +143,15 @@ export async function PATCH(req) {
     }
 
     if (
-      (!_id,
+      !_id ||
       !title ||
-        !description ||
-        !location ||
-        !phone ||
-        !price ||
-        !realState ||
-        !constructionDate ||
-        !category)
+      !description ||
+      !location ||
+      !phone ||
+      !price ||
+      !realState ||
+      !constructionDate ||
+      !category
     ) {
       return NextResponse.json(
         { error: "لطفا اطلاعات معتبر وارد کنید" },
