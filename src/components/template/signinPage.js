@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import styles from "@/template/SignupPage.module.css";
 import Loader from "@/module/Loader";
 
@@ -57,7 +57,7 @@ function SigninPage() {
           <Loader />
         ) : (
           <button type="submit" onClick={signinHandler}>
-            ثبت نام
+            ورود
           </button>
         )}
       </form>
@@ -65,7 +65,6 @@ function SigninPage() {
         حساب کاربری ندارید؟
         <Link href="/signup">ثبت نام</Link>
       </p>
-      <Toaster />
     </div>
   );
 }

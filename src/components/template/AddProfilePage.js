@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import TextInput from "@/module/TextInput";
 import RadioList from "@/module/RadioList";
 import TextList from "@/module/TextList";
@@ -43,6 +43,18 @@ function AddProfilePage({ data }) {
     if (data.error) {
       toast.error(data.error);
     } else {
+      setProfileData({
+        title: "",
+        description: "",
+        location: "",
+        phone: "",
+        price: "",
+        realState: "",
+        constructionDate: new Date(),
+        category: "",
+        rules: [],
+        amenities: [],
+      });
       toast.success(data.message);
       router.refresh();
     }
@@ -122,7 +134,6 @@ function AddProfilePage({ data }) {
         profileData={profileData}
         setProfileData={setProfileData}
       />
-      <Toaster />
       {loading ? (
         <Loader />
       ) : data ? (

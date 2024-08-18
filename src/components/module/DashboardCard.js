@@ -5,7 +5,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import Card from "@/module/Card";
 import styles from "@/module/DashboardCard.module.css";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 function DashboardCard({ data }) {
   const router = useRouter();
@@ -38,7 +38,6 @@ function DashboardCard({ data }) {
           حذف آگهی <AiOutlineDelete />
         </button>
       </div>
-      <Toaster />
     </div>
   );
 }

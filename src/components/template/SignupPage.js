@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import styles from "@/template/SignupPage.module.css";
 import Loader from "@/module/Loader";
 
@@ -74,7 +74,6 @@ function SignupPage() {
         حساب کاربری دارید؟
         <Link href="/signin">ورود</Link>
       </p>
-      <Toaster />
     </div>
   );
 }
